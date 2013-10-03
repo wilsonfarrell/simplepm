@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  project_role: 
+  start_date: 2013-09-13
+  end_date: 2013-09-13
+  time_pct: 1.5
+
+two:
+  project_role: 
+  start_date: 2013-09-13
+  end_date: 2013-09-13
+  time_pct: 1.5

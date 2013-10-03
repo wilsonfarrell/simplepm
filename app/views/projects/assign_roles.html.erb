@@ -1,0 +1,14 @@
+<h1>Assign Roles to <em><%= @project.name %></em></h1>
+<% @project.project_roles.each do |r| %>
+<%= r.role_type.name %> (<% if r.staff %><%= r.staff.name %><%else%>Not Assigned<%end%>) <%= link_to 'Delete', remove_role_from_project_project_role_path(r), :confirm => 'Are you sure?', :method => :delete %></br> 
+<%end%>
+Add a Role:
+<%= form_for(@project_role, :url => add_role_to_project_project_roles_path, :method => :post) do |f| %>
+<%= f.hidden_field(:project_id , :value => @project.id)%>
+<div class="field">
+    <%= f.label :role_type %>: 
+    <%= f.select :role_type_id, RoleType.find(:all).collect {|r| [r.name,r.id]}, :prompt => " -- " %>
+  </div>
+
+<%= f.submit 'Add' %>
+<%end%>

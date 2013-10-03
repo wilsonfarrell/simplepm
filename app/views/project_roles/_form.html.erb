@@ -1,0 +1,29 @@
+<%= form_for(@project_role) do |f| %>
+  <% if @project_role.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@project_role.errors.count, "error") %> prohibited this project_role from being saved:</h2>
+
+      <ul>
+      <% @project_role.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :project %><br />
+    <%= f.select :project_id, Project.find(:all).collect {|s| [s.name,s.id]}, :prompt => " -- " %>
+  </div>
+  <div class="field">
+    <%= f.label :staff %><br />
+    <%= f.select :staff_id, Staff.find(:all).collect {|s| [s.first_name,s.id]}, :include_blank => 'No one right now', :prompt => " -- " %>
+  </div>
+  <div class="field">
+    <%= f.label :role_type %><br />
+    <%= f.select :role_type_id, RoleType.find(:all).collect {|r| [r.name,r.id]}, :prompt => " -- " %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Project role:</b>
+  <%= @planning_time.project_role %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @planning_time.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @planning_time.end_date %>
+</p>
+
+<p>
+  <b>Time pct:</b>
+  <%= @planning_time.time_pct %>
+</p>
+
+
+<%= link_to 'Edit', edit_planning_time_path(@planning_time) %> |
+<%= link_to 'Back', planning_times_path %>

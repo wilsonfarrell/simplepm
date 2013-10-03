@@ -1,0 +1,45 @@
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+                dateFormat : "mm/dd/yy",
+                buttonImageOnly : true,
+                showOn : "both",
+                changeMonth : true,
+                changeYear : true,
+                yearRange : "c-5:c+5"
+	});
+  });
+</script>
+<%= form_for(@planning_time) do |f| %>
+  <% if @planning_time.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@planning_time.errors.count, "error") %> prohibited this planning_time from being saved:</h2>
+
+      <ul>
+      <% @planning_time.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :project_role %><br />
+    <%= f.select :project_role_id, ProjectRole.find(:all).collect {|s| [s.to_s,s.id]}, :prompt => " -- " %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.text_field :start_date, :class => 'datepicker',:value => @planning_time.start_date ? @planning_time.start_date.strftime("%m/%d/%Y") : "" %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.text_field :end_date, :class => 'datepicker',:value => @planning_time.end_date ? @planning_time.end_date.strftime("%m/%d/%Y") : "" %>
+  </div>
+  <div class="field">
+    <%= f.label :time_pct %><br />
+    <%= f.text_field :time_pct %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
